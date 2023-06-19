@@ -95,8 +95,8 @@ class Measure:
         self.data = [['time', 'net_in(kB)', 'net_out(kB)', "MEM(MB)", "MEM%", "CPU%", 'CPU_freq(Hz)']]
         return 0
 
-    def insert_mark(self):
-        self.data.append([self.milisecond(time.time()),"================================================"])
+    def insert_mark(self, msg):
+        self.data.append([msg,self.milisecond(time.time()),"================================================"])
         return 0
     
     def end(self):

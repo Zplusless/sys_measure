@@ -30,10 +30,10 @@ def start():
     return 'start'
 
 
-@app.route('/insert/')
-def insert():
+@app.route('/insert/<msg>/')
+def insert(msg):
     m = data['data']
-    m.insert_mark()
+    m.insert_mark(msg=msg)
     return 'insert'
 
 
@@ -48,7 +48,7 @@ def end():
 
 if __name__ == "__main__":
     try:
-        app.run('0.0.0.0', port=8000)
+        app.run('0.0.0.0', port=10800)
     except KeyboardInterrupt:
         data['data'].write_data()
         print('data has been written back, end!')
