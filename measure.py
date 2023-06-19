@@ -96,7 +96,7 @@ class Measure:
         return 0
 
     def insert_mark(self, msg):
-        self.data.append([msg,self.milisecond(time.time()),"================================================"])
+        self.data.append([self.milisecond(time.time()), msg, "================================================"])
         return 0
     
     def end(self):
