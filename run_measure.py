@@ -16,16 +16,19 @@ app = Flask(__name__)
 
 
    
-data = {'data': Measure(config.nic_name)}
+data = {'data': Measure(config.nic_name), 'is_started': False}
 
 
 @app.route('/start/')
 def start():
-    m = data['data']
-    m.init()
+    if not data['is_started']:
+        m = data['data']
+        m.init()
 
-    p = threading.Thread(target=m.task)  #! 此处只能用Thread不能用Process，因为新的进程就是额外一套资源，不共享变量
-    p.start()
+        p = threading.Thread(target=m.task)  #! 此处只能用Thread不能用Process，因为新的进程就是额外一套资源，不共享变量
+        p.start()
+    else:
+        data['is_started'] = False
 
     return 'start'
 
@@ -47,6 +50,13 @@ def end():
     return 'end'
 
 if __name__ == "__main__":
+
+    #启动后就开始写入数据
+    m = data['data']
+    m.init()
+    p = threading.Thread(target=m.task)  #! 此处只能用Thread不能用Process，因为新的进程就是额外一套资源，不共享变量
+    p.start()
+    data['is_started'] = True
     try:
         app.run('0.0.0.0', port=10800)
     except KeyboardInterrupt:

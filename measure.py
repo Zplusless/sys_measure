@@ -101,6 +101,7 @@ class Measure:
     
     def end(self):
         self.run = False
+        time.sleep(1.5) # 让while循环的数据全部写入list
         return 0
 
 if __name__ == "__main__":
