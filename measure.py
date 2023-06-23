@@ -2,6 +2,7 @@ import time, datetime
 import psutil
 import csv
 import config
+import socket
 
 # 最后的1表示第2个网卡，如果网速显示不正常，可以尝试变化一下数字，一般是1
 # key = list(psutil.net_io_counters(pernic=True).keys())[1]
@@ -85,7 +86,7 @@ class Measure:
 
 
     def write_data(self):
-        with open(config.csv_dir+f'overhead_measurement_{self.milisecond(time.time())[:8]}.csv'.replace(':','-'), 'w') as f:
+        with open(config.csv_dir+f'overhead_measurement_{socket.gethostname()}_{self.milisecond(time.time())[:8]}.csv'.replace(':','-'), 'w') as f:
             wtr = csv.writer(f)
             wtr.writerows(self.data)
 
