@@ -15,7 +15,7 @@ class Measure:
         
         self.t_p= None
         self.t_n = None
-        self.data = [['time', 'net_in(kB)', 'net_out(kB)', "MEM(MB)", "MEM%", "CPU%", 'CPU_freq(Hz)']]
+        self.data = [['time', 'net_in(kB)', 'net_out(kB)', "MEM(MB)", "MEM%", "CPU%", 'CPU_freq(MHz)']]
 
         # 网卡状态
         self.nic_name = nic
