@@ -16,7 +16,7 @@ class Measure:
         
         self.t_p= None
         self.t_n = None
-        self.data = [['time', 'net_in(kB)', 'net_out(kB)', "MEM(MB)", "MEM%", "CPU%", 'CPU_freq(MHz)']]
+        self.data = [['time', 'net_in(kbps)', 'net_out(kbps)', "MEM(MB)", "MEM%", "CPU%", 'CPU_freq(MHz)']]
 
         # 网卡状态
         self.nic_name = nic
@@ -50,9 +50,9 @@ class Measure:
         # log = [psutil.cpu_percent(0), psutil.virtual_memory().percent, psutil.virtual_memory().used, milisecond(time.time())]
         assert self.t_n, self.t_p
 
-        # network --->kB
-        net_in = (self.in_new - self.in_old) /(self.t_n-self.t_p) / 1024
-        net_out = (self.out_new - self.out_old) /(self.t_n-self.t_p) / 1024
+        # network --->kbps
+        net_in = (self.in_new - self.in_old) /(self.t_n-self.t_p) / 1024 *8
+        net_out = (self.out_new - self.out_old) /(self.t_n-self.t_p) / 1024 *8
         
         # net_in = str(net_in).split('.')[0] + '.' + str(net_in).split('.')[1][:decimal_place]
         # net_out = str(net_out).split('.')[0] + '.' + str(net_out).split('.')[1][:decimal_place]
