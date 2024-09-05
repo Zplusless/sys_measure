@@ -1,7 +1,7 @@
 from flask import Flask
 import threading
 
-from measure import Measure
+from general_measure import Measure
 import config
 
 
